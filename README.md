@@ -19,7 +19,7 @@ gh auth setup-git             # makes git use gh for private HTTPS auth
 
 ```sh
 brew tap eazybi/tap https://github.com/eazybi/homebrew-tap.git
-brew install eazybi/tap/eazybi
+brew install eazybi/tap/eazybi-cli
 ```
 
 During `brew install`, the formula's download strategy shells out to
@@ -30,13 +30,13 @@ Nothing is stored in your shell profile.
 
 ```sh
 brew update
-brew upgrade eazybi/tap/eazybi
+brew upgrade eazybi/tap/eazybi-cli
 ```
 
 ## Uninstall
 
 ```sh
-brew uninstall eazybi/tap/eazybi
+brew uninstall eazybi/tap/eazybi-cli
 brew untap eazybi/tap
 ```
 

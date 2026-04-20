@@ -16,6 +16,7 @@ class Eazybi < Formula
 
       define_method(:install) do
         bin.install "eazybi"
+        generate_completions_from_executable(bin/"eazybi", "completion")
       end
     end
     if Hardware::CPU.arm?
@@ -24,6 +25,7 @@ class Eazybi < Formula
 
       define_method(:install) do
         bin.install "eazybi"
+        generate_completions_from_executable(bin/"eazybi", "completion")
       end
     end
   end
@@ -34,6 +36,7 @@ class Eazybi < Formula
       sha256 "8500be2135d3094504e7196266753e5e587b32c7bc7480799c051be98ac3ff38"
       define_method(:install) do
         bin.install "eazybi"
+        generate_completions_from_executable(bin/"eazybi", "completion")
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
@@ -41,6 +44,7 @@ class Eazybi < Formula
       sha256 "87d83099a33090dc5ee9bcbe1e76b1f59fbf3e23cba95dc2a76a5d8319e04719"
       define_method(:install) do
         bin.install "eazybi"
+        generate_completions_from_executable(bin/"eazybi", "completion")
       end
     end
   end

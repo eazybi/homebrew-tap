@@ -6,13 +6,13 @@ require_relative "../lib/custom_download_strategy"
 class EazybiCli < Formula
   desc "Command-line interface for eazyBI"
   homepage "https://github.com/eazybi/eazybi_cli"
-  version "0.2.0"
+  version "0.2.1"
   license "Proprietary"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/eazybi/eazybi_cli/releases/download/v0.2.0/eazybi_0.2.0_darwin_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "5aa961f1c00d61a7ed11771fb2d5385ed73b19c82a2b72afc6eb927480c25cf7"
+      url "https://github.com/eazybi/eazybi_cli/releases/download/v0.2.1/eazybi_0.2.1_darwin_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "03a7f0c6f196e440ca59083b1866f3f9273cc63868ad07006964e93e1a6bb344"
 
       define_method(:install) do
         bin.install "eazybi"
@@ -20,8 +20,8 @@ class EazybiCli < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/eazybi/eazybi_cli/releases/download/v0.2.0/eazybi_0.2.0_darwin_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "90c50fafb4db88629f9214770cc90004c90c0d651ffd4e1a2e25df2a05b08a15"
+      url "https://github.com/eazybi/eazybi_cli/releases/download/v0.2.1/eazybi_0.2.1_darwin_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "8c69959959ff7663468435fb51aeb4fdffdd2e6ab26df43196ce225d0f76720b"
 
       define_method(:install) do
         bin.install "eazybi"
@@ -32,16 +32,16 @@ class EazybiCli < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/eazybi/eazybi_cli/releases/download/v0.2.0/eazybi_0.2.0_linux_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "4851b4b710299476d35793bcb94a4414c898ed6e3636ab1a1f2d2e412ea426b0"
+      url "https://github.com/eazybi/eazybi_cli/releases/download/v0.2.1/eazybi_0.2.1_linux_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "4ff025875cb074e919258eb3e65653c81111909e47707552d2d1fb9c7dd5565a"
       define_method(:install) do
         bin.install "eazybi"
         generate_completions_from_executable(bin/"eazybi", "completion")
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/eazybi/eazybi_cli/releases/download/v0.2.0/eazybi_0.2.0_linux_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "2bcb631ac630f458c84bfc5ed1861df90db56977feeaf0d6c60eed1b7e5de19a"
+      url "https://github.com/eazybi/eazybi_cli/releases/download/v0.2.1/eazybi_0.2.1_linux_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "9b25189df807d072a961794e30af888a250ac83119226d664128991ee2efb1e7"
       define_method(:install) do
         bin.install "eazybi"
         generate_completions_from_executable(bin/"eazybi", "completion")

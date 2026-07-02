@@ -1,60 +1,21 @@
 # eazybi/homebrew-tap
 
-Private Homebrew tap for eazyBI command-line tools.
-
-Formulas here pull binaries from private GitHub releases (currently
-[eazybi/eazybi_cli](https://github.com/eazybi/eazybi_cli)), so installing
-requires a GitHub token. The tap uses the **GitHub CLI (`gh`)** so you only
-authenticate once and never handle a raw PAT.
-
-## One-time setup
-
-```sh
-brew install gh
-gh auth login                 # browser OAuth, pick HTTPS
-gh auth setup-git             # makes git use gh for private HTTPS auth
-```
+Public Homebrew tap for eazyBI command-line tools.
 
 ## Install
 
 ```sh
-brew tap eazybi/tap https://github.com/eazybi/homebrew-tap.git
 brew install eazybi/tap/eazybi-cli
 ```
 
-During `brew install`, the formula's download strategy shells out to
-`gh auth token` to fetch a short-lived token and download the release asset.
-Nothing is stored in your shell profile.
-
-> If the download fails with `Could not obtain a GitHub token` or
-> `operation not permitted` on `~/.config/gh/config.yml`, see
-> [Troubleshooting](#troubleshooting) below.
+No GitHub token or `gh` setup is required — the binaries are hosted publicly at
+`https://eazybi.com/system/downloads/`.
 
 ## Upgrade
 
 ```sh
 brew update
 brew upgrade eazybi/tap/eazybi-cli
-```
-
-## Troubleshooting
-
-### `Could not obtain a GitHub token` / `operation not permitted` on `~/.config/gh/config.yml`
-
-Recent Homebrew versions (6.0+) run the download phase inside a sandbox that
-blocks reads of `~/.config/gh`. The formula's `gh auth token` call then can't
-read `gh`'s config, so no token is found. Resolve the token in your own shell
-(outside the sandbox) and pass it in via the env var instead:
-
-```sh
-HOMEBREW_GITHUB_API_TOKEN="$(gh auth token)" brew upgrade eazybi/tap/eazybi-cli
-```
-
-The same prefix works for `brew install`. To avoid typing it every time, add
-this to your `~/.zshrc` (or `~/.bashrc`):
-
-```sh
-export HOMEBREW_GITHUB_API_TOKEN="$(gh auth token 2>/dev/null)"
 ```
 
 ## Uninstall
@@ -64,27 +25,15 @@ brew uninstall eazybi/tap/eazybi-cli
 brew untap eazybi/tap
 ```
 
-## Power user / CI alternative
-
-If `gh` isn't available (e.g. CI), export a PAT with `repo` scope — the
-download strategy will use that instead:
-
-```sh
-export HOMEBREW_GITHUB_API_TOKEN=ghp_xxx
-```
-
 ## Layout
 
-- `Formula/` — auto-generated formulas committed by
-  [goreleaser](https://goreleaser.com/) during `eazybi_cli` releases.
-- `lib/custom_download_strategy.rb` — authenticates `brew` downloads against
-  private GitHub release assets. Tries `gh auth token` first, then falls back
-  to `HOMEBREW_GITHUB_API_TOKEN`. Referenced from generated formulas as
-  `custom_require "lib/custom_download_strategy"`. Once `eazybi_cli` becomes
-  public, both the `custom_require` line and this file can be removed.
+- `Formula/` — auto-generated formulas rendered by
+  [goreleaser](https://goreleaser.com/) during eazyBI CLI releases. Formula
+  download URLs point at `https://eazybi.com/system/downloads/`.
 
 ## Publishing
 
-Formulas are published automatically when a new tag is pushed to
-`eazybi/eazybi_cli`. The release workflow uses the `HOMEBREW_TAP_GITHUB_TOKEN`
-secret (a PAT with `repo` scope on this tap) to commit updated formulas here.
+Formulas are committed here by the eazyBI CLI release process
+(`scripts/upload.sh` in the CLI repo), which runs from a trusted environment
+after uploading the release archives to `eazybi.com`. This tap does not fetch
+from any private repository.

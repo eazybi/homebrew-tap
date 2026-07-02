@@ -26,11 +26,35 @@ During `brew install`, the formula's download strategy shells out to
 `gh auth token` to fetch a short-lived token and download the release asset.
 Nothing is stored in your shell profile.
 
+> If the download fails with `Could not obtain a GitHub token` or
+> `operation not permitted` on `~/.config/gh/config.yml`, see
+> [Troubleshooting](#troubleshooting) below.
+
 ## Upgrade
 
 ```sh
 brew update
 brew upgrade eazybi/tap/eazybi-cli
+```
+
+## Troubleshooting
+
+### `Could not obtain a GitHub token` / `operation not permitted` on `~/.config/gh/config.yml`
+
+Recent Homebrew versions (6.0+) run the download phase inside a sandbox that
+blocks reads of `~/.config/gh`. The formula's `gh auth token` call then can't
+read `gh`'s config, so no token is found. Resolve the token in your own shell
+(outside the sandbox) and pass it in via the env var instead:
+
+```sh
+HOMEBREW_GITHUB_API_TOKEN="$(gh auth token)" brew upgrade eazybi/tap/eazybi-cli
+```
+
+The same prefix works for `brew install`. To avoid typing it every time, add
+this to your `~/.zshrc` (or `~/.bashrc`):
+
+```sh
+export HOMEBREW_GITHUB_API_TOKEN="$(gh auth token 2>/dev/null)"
 ```
 
 ## Uninstall

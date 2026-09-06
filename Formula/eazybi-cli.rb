@@ -5,13 +5,13 @@
 class EazybiCli < Formula
   desc "Command-line interface for eazyBI"
   homepage "https://eazybi.com"
-  version "0.3.3"
+  version "0.3.4"
   license "Proprietary"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://eazybi.com/system/downloads/eazybi-cli-0.3.3-darwin-amd64.tar.gz"
-      sha256 "a1224295a1e9d879b2af7e2b1ff700f15a1be00f2a8d93bb3b7eb783faa93288"
+      url "https://eazybi.com/system/downloads/eazybi-cli-0.3.4-darwin-amd64.tar.gz"
+      sha256 "7a8ce984c5e13c59e594126c8a91d5c791d85923a6dcb80ad589f141ab7d2c41"
 
       define_method(:install) do
         bin.install "eazybi"
@@ -19,8 +19,8 @@ class EazybiCli < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://eazybi.com/system/downloads/eazybi-cli-0.3.3-darwin-arm64.tar.gz"
-      sha256 "02979d47c00ec5a82b0e2019e7671a2decbd74e082ee73fc38612bc3b18e06e4"
+      url "https://eazybi.com/system/downloads/eazybi-cli-0.3.4-darwin-arm64.tar.gz"
+      sha256 "e8a579d93ac7a7a1c29d92f07d2b46a5d511b24c2631ac889f7af8d4c4d15fa3"
 
       define_method(:install) do
         bin.install "eazybi"
@@ -31,16 +31,16 @@ class EazybiCli < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://eazybi.com/system/downloads/eazybi-cli-0.3.3-linux-amd64.tar.gz"
-      sha256 "c4a66b97de594dc0e0575a8d0e6a179e5455fbd992c92fde695467e68e24c3c6"
+      url "https://eazybi.com/system/downloads/eazybi-cli-0.3.4-linux-amd64.tar.gz"
+      sha256 "cf917a35145908d97adb34413e4d871f8f87f6d04d0f34b0b6f309ba595e841e"
       define_method(:install) do
         bin.install "eazybi"
         generate_completions_from_executable(bin/"eazybi", "completion")
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://eazybi.com/system/downloads/eazybi-cli-0.3.3-linux-arm64.tar.gz"
-      sha256 "9225effdb614f1106e5cba85b02629a31a1d9ebdcd79b5156b97865e439bfbee"
+      url "https://eazybi.com/system/downloads/eazybi-cli-0.3.4-linux-arm64.tar.gz"
+      sha256 "641e9410d0003f8b49e37ee79bac0dab4a30345d29af8aa84113bd34ffda9694"
       define_method(:install) do
         bin.install "eazybi"
         generate_completions_from_executable(bin/"eazybi", "completion")
